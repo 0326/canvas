@@ -28,6 +28,7 @@
     "babel-polyfill": "^6.13.0",
     "babel-runtime": "^6.11.6",
     "html2canvas": "^0.5.0-beta4",
-    "qrcode2": "^1.2.3"
+    "qrcode2": "^1.2.3",
+    "tracking": "^1.1.3"
   }
 }
