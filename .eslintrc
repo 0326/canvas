@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "yourCustomVal": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "semi": ["error", "never"],
+        "indent": ["error", 2],
+        "quotes": ["error", "single"]
+    }
+}

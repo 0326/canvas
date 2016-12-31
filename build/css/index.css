@@ -1,0 +1,24 @@
+.wrapper {
+    margin: 100px auto 0 auto;
+    text-align: center;
+    color: #21bc58;
+}
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.qrcode-wrapper .qrcode{
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
+  border: 2px solid #eee;
+}
+
+.qrcode-wrapper input {
+  width: 200px;
+}
+
+/*# sourceMappingURL=index.css.map */
