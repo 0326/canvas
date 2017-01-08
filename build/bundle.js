@@ -7226,6 +7226,85 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * 在chrome下截屏可以渲染出图片，但是在微信里面不行
+ */
+var CanvasImg = function () {
+  function CanvasImg() {
+    (0, _classCallCheck3.default)(this, CanvasImg);
+
+    this.$canvas = window.$canvas = document.getElementById('J_Canvas');
+    this.ctx = this.$canvas.getContext('2d');
+
+    this.drawImg();
+    this.initEvent();
+  }
+
+  (0, _createClass3.default)(CanvasImg, [{
+    key: 'initEvent',
+    value: function initEvent() {
+      var _this = this;
+
+      document.getElementById('J_CanvasImgDld').addEventListener('click', function (e) {
+        console.log('start downlaod..');
+        var imgData = _this.$canvas.toDataURL('image/jpeg', 0.3);
+        imgData = imgData.replace('image/jpeg', 'image/octet-stream');
+      });
+    }
+  }, {
+    key: 'drawImg',
+    value: function drawImg() {
+      var _this2 = this;
+
+      var img = new Image();
+      // img.src = '/assets/panda.jpeg'
+      img.src = '/assets/y.jpg';
+      img.onload = function () {
+        _this2.$canvas.width = img.width;
+        _this2.$canvas.height = img.height;
+        _this2.ctx.drawImage(img, 0, 0); // 100, 100)//, img.width, img.height)
+        // window.imgData =this.ctx.getImageData(0, 0, img.width, img.height)
+        // this.ctx.putImageData(this.sepiaFilter(window.imgData), 500, 0)
+        document.getElementById('J_CanvasImg').src = _this2.$canvas.toDataURL('image/jpeg', 0.3);
+      };
+    }
+  }, {
+    key: 'sepiaFilter',
+    value: function sepiaFilter(pixels) {
+      var d = pixels.data;
+      for (var i = 0; i < d.length; i += 4) {
+        var r = d[i];
+        var g = d[i + 1];
+        var b = d[i + 2];
+        d[i] = r * 0.393 + g * 0.769 + b * 0.189; // red
+        d[i + 1] = r * 0.349 + g * 0.686 + b * 0.168; // green
+        d[i + 2] = r * 0.272 + g * 0.534 + b * 0.131; // blue
+      }
+      return pixels;
+    }
+  }]);
+  return CanvasImg;
+}();
+
+exports.default = CanvasImg;
+
+},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3}],25:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var APP_NAME = 'frontend-dog';
 var APP_VERSION = '0.0.1';
 
@@ -7234,7 +7313,7 @@ exports.default = {
   APP_VERSION: APP_VERSION
 };
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7295,7 +7374,7 @@ var Face = function () {
 
 exports.default = Face;
 
-},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"tracking":23}],26:[function(require,module,exports){
+},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"tracking":23}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7353,7 +7432,7 @@ var Html2canvas = function () {
 
 exports.default = Html2canvas;
 
-},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"html2canvas":21}],27:[function(require,module,exports){
+},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"html2canvas":21}],28:[function(require,module,exports){
 'use strict';
 
 var _config = require('./config');
@@ -7372,19 +7451,24 @@ var _face = require('./face');
 
 var _face2 = _interopRequireDefault(_face);
 
+var _canvasimg = require('./canvasimg');
+
+var _canvasimg2 = _interopRequireDefault(_canvasimg);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
-* The Entry
-*/
-new _qrcode2.default();
+new _qrcode2.default(); /*
+                        * The Entry
+                        */
+
 new _html2canvas2.default();
 new _face2.default();
+new _canvasimg2.default();
 
 var title = 'Hello ' + _config2.default.APP_NAME + '!';
 document.getElementById('title').innerHTML = title;
 
-},{"./config":24,"./face":25,"./html2canvas":26,"./qrcode":28}],28:[function(require,module,exports){
+},{"./canvasimg":24,"./config":25,"./face":26,"./html2canvas":27,"./qrcode":29}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7458,6 +7542,6 @@ var QRCode = function () {
 
 exports.default = QRCode;
 
-},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"qrcode2":22}]},{},[27]);
+},{"babel-runtime/helpers/classCallCheck":2,"babel-runtime/helpers/createClass":3,"qrcode2":22}]},{},[28]);
 
 //# sourceMappingURL=bundle.js.map

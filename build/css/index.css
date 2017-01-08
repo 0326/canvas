@@ -3,6 +3,9 @@
     text-align: center;
     color: #21bc58;
 }
+.wrapper:nth-child(2n) {
+  background-color: #eee;
+}
 .logo {
     width: 100px;
     height: 100px;
@@ -19,6 +22,10 @@
 
 .qrcode-wrapper input {
   width: 200px;
+}
+
+.canvas-wrapper #J_Canvas{
+  border: 1px solid #f00;
 }
 
 /*# sourceMappingURL=index.css.map */
